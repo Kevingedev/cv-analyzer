@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>CVAnalyzer</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- Styles -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/validators.js'])
         
         
     </head>
@@ -41,46 +41,60 @@
                             <span id="file-name" class="mr-2">Seleccionar archivo</span>
                             <input id="file-input" name="document" class="hidden" type="file" />
                         </label>
-                        <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Analizar</button>
+                        
+                        <button 
+                            
+                            id="submit-button" 
+                            type="submit" 
+                            class="relative mt-10 inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                Analizar
+                            </span>
+                        </button>
                     </div>
                 </form>
 
             </div>
-            @if(session('success'))
-                 
-                <div id="alert-message" class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-                    <span class="font-medium">Success alert!</span> {{ session('success') }}
-                  </div>
-            @endif
             
-            @if(session('error'))
-
-
-                <div id="alert-message" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <span class="font-medium">Danger alert!</span> {{ session('error') }}
-                  </div>
-            @endif
-
+            
+            @if ($errors->any())
+            <div id="alert-message" 
+                class="fixed top-4 right-4 z-50 p-4 mb-4 text-lg text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 shadow-lg" 
+                role="alert">
+                <span class="font-medium">Ocurrio un Error!</span> 
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-              // Selecciona el alert por ID
-              const alert = document.getElementById('alert-message');
-              
-              if (alert) {
-                // Establece un temporizador para ocultar el alert después de 4 segundos
-                setTimeout(function() {
-                  alert.style.opacity = '0'; // Opcional: Puedes usar esta línea para un desvanecimiento
-                  alert.style.transition = 'opacity 0.5s ease-out'; // Opcional: Para un efecto de desvanecimiento
-                  setTimeout(function() {
-                    alert.style.display = 'none'; // Oculta el alert
-                  }, 500); // Tiempo igual al de la transición
-                }, 3000); // 4 segundos
-              }
+                const fileInput = document.getElementById('file-input');
+                const submitButton = document.getElementById('submit-button');
+                const fileNameSpan = document.getElementById('file-name');
+
+                // submitButton.textContent = 'Cargando...';
+                fileInput.addEventListener('change', function() {
+                    // Verifica si se ha seleccionado un archivo
+                    if (fileInput.files.length > 0) {
+                        // Obtiene el nombre del archivo
+                        const fileName = fileInput.files[0].name;
+                        fileNameSpan.textContent = fileName;
+
+                        // Habilita el botón de guardar
+                        submitButton.disabled = false;
+                    } else {
+                        // Si no se selecciona ningún archivo, deshabilita el botón
+                        fileNameSpan.textContent = 'Seleccionar archivo';
+                        submitButton.disabled = true;
+                    }
+                });
             });
-          </script>
-        
+        </script>
     </body>
 </html>
 
