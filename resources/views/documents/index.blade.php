@@ -21,6 +21,7 @@
         <p class="animate__animated animate__backInUp animate__fast font-sans text-2xl sm:text-lg md:text-2xl lg:text-2xl xl:text-4xl text-center pt-4 font-bold text-cyan-300 ">
             Resultado de Analisis
         </p>
+        <p>El nombre del archivo es: {{ $fileName }}</p>
 
         @if($fileName)
             @if(Str::endsWith($fileName, '.pdf'))
@@ -37,11 +38,15 @@
                 </iframe>
             @endif
         @endif
-
+        <br><br>
+        <pre>{{ $text }}</pre>
 
     </div>
     <div class="">
-        <p>algo aqui que no se</p>
+        <p> Recomendaciones </p>
+        <p> Sugerencias </p>
+        <p> Correcciones </p>
+        <p> Errores </p>
     </div>
     <br>
 

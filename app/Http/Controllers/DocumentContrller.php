@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class DocumentContrller extends Controller
 {
 
-    public function index($fileName)
-    {
-        return view('documents.index', ['fileName' => $fileName]);
-    }
+    
 
     public function store(Request $request)
     {
