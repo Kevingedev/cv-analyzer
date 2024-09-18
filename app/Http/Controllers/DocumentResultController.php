@@ -12,7 +12,7 @@ class DocumentResultController extends Controller
     public function index($fileName)
     {
         $path = storage_path('app/public/documents/'.$fileName);
-        $text = (new Pdf('C:\poppler-24.07.0\Library\bin\pdftotext.exe'))
+        $text = (new Pdf('D:\poppler-24.07.0\Library\bin\pdftotext.exe'))
             ->setPdf($path)
             ->text();
 
