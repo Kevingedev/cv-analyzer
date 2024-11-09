@@ -41,6 +41,20 @@
                             <span id="file-name" class="mr-2">Seleccionar archivo</span>
                             <input id="file-input" name="document" class="hidden" type="file" />
                         </label>
+                        <label class="flex items-center cursor-pointer">
+                            <select id="position" name="position_id" 
+                            class="mt-3 bg-cyan-50 border border-cyan-300 text-cyan-700 text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5">
+                                {{-- <option selected>Choose a country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="FR">France</option>
+                                <option value="DE">Germany</option> --}}
+                                <option value="N/A" disabled selected>Seleccionar un Puesto...</option>
+                                @foreach ($positions as $position)
+                                    <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                @endforeach
+                            </select>
+                        </label>
                         
                         <button 
                             

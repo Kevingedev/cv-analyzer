@@ -19,35 +19,55 @@
     
     <div class="md:container md:mx-auto">
         <p class="animate__animated animate__backInUp animate__fast font-sans text-2xl sm:text-lg md:text-2xl lg:text-2xl xl:text-4xl text-center pt-4 font-bold text-cyan-300 ">
-            Resultado de Analisis
+            {{ $fileName }}
         </p>
-        <p>El nombre del archivo es: {{ $fileName }}</p>
-
-        @if($fileName)
-            @if(Str::endsWith($fileName, '.pdf'))
-                <h2>Documento PDF:</h2>
-                <iframe width="100%" height="500" 
-                    src="{{ asset('storage/documents/' . $fileName) }}" type="application/pdf" >
-                    <p>Tu navegador no soporta PDFs. <a href="{{ asset('storage/documents/' . $fileName) }}">Descargar el PDF</a>.</p>
-                </iframe>
-            @elseif(Str::endsWith($fileName, '.doc') || Str::endsWith($fileName, '.docx'))
-                <h2>Documento Word:</h2>
-                <iframe 
-                    src="https://view.officeapps.live.com/op/view.aspx?src={{ urlencode(asset('storage/documents/' . $fileName)) }}" 
-                    width="100%" height="500">
-                </iframe>
+        {{-- <p>El nombre del archivo es: {{ $fileName }}</p> --}}
+        <a 
+        href="{{ route('validar.postulante', ['id' => $id]) }}"
+        type="button" 
+        class="focus:outline-none text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 cursor-pointer"
+        >
+            Validar Postulante
+        </a>
+        <div style="display: flex; justify-content: flex-start; align-items: flex-start; gap: 20px;" class="mt-4">
+            @if($fileName)
+                @if(Str::endsWith($fileName, '.pdf'))
+                    <div style="flex: 1;">
+                        <h2 class="text-white">Documento PDF:</h2>
+                        <iframe width="100%" height="500" 
+                            src="{{ asset('storage/documents/' . $fileName) }}" type="application/pdf">
+                            <p>Tu navegador no soporta PDFs. <a href="{{ asset('storage/documents/' . $fileName) }}">Descargar el PDF</a>.</p>
+                        </iframe>
+                    </div>
+                @elseif(Str::endsWith($fileName, '.doc') || Str::endsWith($fileName, '.docx'))
+                    <div style="flex: 1;">
+                        <h2 class="text-white">Documento Word:</h2>
+                        <iframe 
+                            src="https://view.officeapps.live.com/op/view.aspx?src={{ urlencode(asset('storage/documents/' . $fileName)) }}" 
+                            width="100%" height="500">
+                        </iframe>
+                    </div>
+                @endif
             @endif
-        @endif
-        <br><br>
-        <pre>{{ $text }}</pre>
+        
+            <!-- Columna para el texto -->
+            <div style="flex: 1; padding-left: 20px;">
+                <h4 class="text-white">Detalle de tu CV:</h4>
+                <p class="text-white">{{ $text }}</p>
+                
+                {{-- <button type="button" class="">PROCESAR</button> --}}
+            </div>
+        </div>
+        <br>
+        
 
     </div>
-    <div class="">
+    {{-- <div class="">
         <p> Recomendaciones </p>
         <p> Sugerencias </p>
         <p> Correcciones </p>
         <p> Errores </p>
-    </div>
+    </div> --}}
     <br>
 
 
