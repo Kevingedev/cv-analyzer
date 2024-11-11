@@ -6,6 +6,8 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Spatie\PdfToText\Pdf;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class DocumentResultController extends Controller
 {
@@ -35,6 +37,8 @@ class DocumentResultController extends Controller
                 'id' => $id
             ]);
     }
+
+    
      
 }
 // Función para limpiar caracteres extraños del texto

@@ -12,5 +12,5 @@ Route::post('/upload', [DocumentContrller::class, 'store'])->name('upload');
 
 Route::get('/documents/{id}', [DocumentResultController::class, 'index'])->name('documents.index');
 
-Route::get('/validar-postulante/{id}', [ValidarPostulanteController::class, 'index'])->name('validar.postulante');
+Route::get('/validar-postulante/{id}', [ValidarPostulanteController::class, 'getPredictionFromPython'])->name('validar.postulante');
 

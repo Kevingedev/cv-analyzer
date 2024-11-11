@@ -20,6 +20,17 @@
     <h2 class="text-center mt-4">
         AQUI SE HACE LA VALIDACION
     </h2>
-    
+    <p>Predicción: {{ $prediction }}</p>
+    <p>Coincidencias: 
+        @if(is_array($matches) && count($matches) > 0)
+            <ul>
+                @foreach($matches as $match)
+                    <li>{{ $match }}</li>
+                @endforeach
+            </ul>
+        @else
+            Ninguna
+        @endif
+    </p>
 </body>
 </html>

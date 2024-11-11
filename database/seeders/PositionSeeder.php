@@ -14,9 +14,9 @@ class PositionSeeder extends Seeder
     public function run()
     {
         $positions = [
-            ['name' => 'Desarrollador web', 'is_active' => true],
+            ['name' => 'Desarrollador', 'is_active' => true],
             ['name' => 'Asesor de Ventas', 'is_active' => true],
-            ['name' => 'Auxiliar Contable', 'is_active' => true],
+            ['name' => 'Contador', 'is_active' => true],
             ['name' => 'Diseñador Gráfico', 'is_active' => true],
             ['name' => 'Gerente de Proyecto', 'is_active' => true],
             ['name' => 'Analista de Datos', 'is_active' => true],
