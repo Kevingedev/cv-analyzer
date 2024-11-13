@@ -61,7 +61,7 @@ class DocumentContrller extends Controller
 
             $file_name = $fileName . '.' . $extension;
             $path = storage_path('app/public/documents/'.$file_name); //guardando lel documento y obteniendo la ruta
-            $text = (new Pdf('D:\poppler-24.07.0\Library\bin\pdftotext.exe')) //Obteniendo el texto de documento
+            $text = (new Pdf('C:\poppler-24.07.0\Library\bin\pdftotext.exe')) //Obteniendo el texto de documento
             ->setPdf($path)
             ->text();
             $new_document = Document::create([
