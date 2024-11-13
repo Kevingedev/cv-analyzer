@@ -56,6 +56,9 @@
                 <p class="text-white">{{ $text }}</p>
                 
                 {{-- <button type="button" class="">PROCESAR</button> --}}
+                    
+                {{--  --}}
+                
             </div>
         </div>
         <br>
