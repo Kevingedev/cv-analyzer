@@ -22,35 +22,35 @@ def remove_stopwords(text, stopwords):
 data = [
     # Desarrollador
     {"text": "Desarrollo web, HTML, CSS, JavaScript", "label": "Desarrollador"},
-    {"text": "Contabilidad financiera, balance general, estados financieros", "label": "Contabilidad"},
+    {"text": "Contabilidad financiera, balance general, estados financieros", "label": "Contador"},
     {"text": "Bases de datos, SQL Server, MySQL", "label": "Desarrollador"},
-    {"text": "Auditoría interna, análisis de riesgos, control financiero", "label": "Contabilidad"},
+    {"text": "Auditoría interna, análisis de riesgos, control financiero", "label": "Contador"},
     {"text": "Backend, Node.js, Express", "label": "Desarrollador"},
-    {"text": "Gestión de impuestos, declaraciones fiscales, IVA", "label": "Contabilidad"},
+    {"text": "Gestión de impuestos, declaraciones fiscales, IVA", "label": "Contador"},
     {"text": "Aplicaciones móviles, Android Studio, Java", "label": "Desarrollador"},
-    {"text": "Cálculo de nómina, deducciones, retenciones", "label": "Contabilidad"},
+    {"text": "Cálculo de nómina, deducciones, retenciones", "label": "Contador"},
     {"text": "Machine Learning, Python, TensorFlow", "label": "Desarrollador"},
-    {"text": "Contabilidad de costos, análisis de costos de producción", "label": "Contabilidad"},
+    {"text": "Contabilidad de costos, análisis de costos de producción", "label": "Contador"},
     {"text": "Aplicaciones de escritorio, C++, Visual Studio", "label": "Desarrollador"},
-    {"text": "Flujo de caja, proyecciones financieras, conciliaciones bancarias", "label": "Contabilidad"},
+    {"text": "Flujo de caja, proyecciones financieras, conciliaciones bancarias", "label": "Contador"},
     {"text": "PHP, Laravel, bases de datos relacionales", "label": "Desarrollador"},
-    {"text": "Contabilidad de activos fijos, depreciación, amortización", "label": "Contabilidad"},
+    {"text": "Contabilidad de activos fijos, depreciación, amortización", "label": "Contador"},
     {"text": "Gestión de APIs, RESTful, JSON", "label": "Desarrollador"},
-    {"text": "Control de cuentas por cobrar, cuentas por pagar, gestión de cobros", "label": "Contabilidad"},
+    {"text": "Control de cuentas por cobrar, cuentas por pagar, gestión de cobros", "label": "Contador"},
     {"text": "Frontend, React, Vue.js", "label": "Desarrollador"},
-    {"text": "Preparación de informes financieros mensuales, trimestrales", "label": "Contabilidad"},
+    {"text": "Preparación de informes financieros mensuales, trimestrales", "label": "Contador"},
     {"text": "Desarrollo ágil, Scrum, Git", "label": "Desarrollador"},
-    {"text": "Software contable, QuickBooks, SAP, Contpaqi", "label": "Contabilidad"},
+    {"text": "Software contable, QuickBooks, SAP, Contpaqi", "label": "Contador"},
     {"text": "Desarrollo en la nube, AWS, Azure", "label": "Desarrollador"},
-    {"text": "Análisis de balances, razon de liquidez, solvencia", "label": "Contabilidad"},
+    {"text": "Análisis de balances, razon de liquidez, solvencia", "label": "Contador"},
     {"text": "Automatización de pruebas, Selenium, Cypress", "label": "Desarrollador"},
-    {"text": "Presupuesto empresarial, planificación financiera, previsión de ingresos", "label": "Contabilidad"},
+    {"text": "Presupuesto empresarial, planificación financiera, previsión de ingresos", "label": "Contador"},
     {"text": "Ecommerce, Magento, WooCommerce", "label": "Desarrollador"},
-    {"text": "Contabilidad fiscal, impuestos sobre la renta, IVA, ISR", "label": "Contabilidad"},
+    {"text": "Contabilidad fiscal, impuestos sobre la renta, IVA, ISR", "label": "Contador"},
     {"text": "Inteligencia artificial, scikit-learn, NLP", "label": "Desarrollador"},
-    {"text": "Conciliación contable, revisión de estados bancarios, ajustes contables", "label": "Contabilidad"},
+    {"text": "Conciliación contable, revisión de estados bancarios, ajustes contables", "label": "Contador"},
     {"text": "Desarrollador full-stack, MongoDB, GraphQL", "label": "Desarrollador"},
-    {"text": "Normas contables, IFRS, NIIF, normativas fiscales", "label": "Contabilidad"},
+    {"text": "Normas contables, IFRS, NIIF, normativas fiscales", "label": "Contador"},
 ]
 
 # Extraer el texto y las etiquetas
@@ -79,7 +79,7 @@ accuracy = metrics.accuracy_score(Y_test, predictions)
 # Extraer palabras clave de cada categoría
 keywords = {
     "Desarrollador": set(),
-    "Contabilidad": set()
+    "Contador": set()
 }
 for item in data:
     words = set(re.findall(r'\w+', item['text'].lower()))

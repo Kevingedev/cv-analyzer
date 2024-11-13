@@ -46,13 +46,18 @@ class DocumentContrller extends Controller
 
                     // $position_id = $request->input('position_id');
                     // dd($position_id);
+                    $path = storage_path('app/public/documents/' . $pdfFileName);
+                    $text = (new Pdf('C:\poppler-24.07.0\Library\bin\pdftotext.exe')) //Obteniendo el texto de documento
+                    ->setPdf($path)
+                    ->text();
 
-                    Document::create([
+                    $new_document = Document::create([
                         'position_id' => $position_id,
-                        'name' => $filePath,
+                        'name' => $pdfFileName,
+                        'content' => $text,
                     ]);
         
-                    return redirect()->route('documents.index', ['fileName' => $pdfFileName])
+                    return redirect()->route('documents.index', ['id' => $new_document->id])
                                      ->with('success', 'Documento Word convertido a PDF con éxito');
                 } catch (\Exception $e) {
                     return back()->with('error', 'Error al convertir el documento: ' . $e->getMessage());

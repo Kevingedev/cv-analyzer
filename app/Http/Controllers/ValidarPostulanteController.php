@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Hability;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -48,7 +49,7 @@ class ValidarPostulanteController extends Controller
 
         //return $result;
 
-        //$habilities = Hability::where('position_id', '=', $document->position_id)->get();
+        $habilities = Hability::where('position_id', '=', $document->position_id)->get();
 
         //dd($habilities[0]->name);
         //$matches = [];
@@ -99,7 +100,16 @@ class ValidarPostulanteController extends Controller
             }
         })->where('position_id', $document->position_id)->get();
 
-        //$approvalPercentage = $this->approval_percentage(count($matches), count($habilities));
+
+
+        $position = Position::find($document->position_id);
+
+        $result_prediction = false;
+        if ($position->name == $result['prediccion']) {
+            $result_prediction = true;
+        }
+
+        $approvalPercentage = $this->approval_percentage(count($matches), count($habilities));
 
         //dd($matches);
         //return $result;
@@ -108,7 +118,10 @@ class ValidarPostulanteController extends Controller
             // 'fileName' => $document->name,
             // 'text' => $text,
             'prediction' => $result['prediccion'],
+            'position' => $position->name,
+            'result' => $result_prediction,
             'matches' => $matches,
+            'approvalPercentage' => $approvalPercentage,
             'id' => $id
         ]);
 
