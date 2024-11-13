@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Position;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     //
     public function index(){
-
-
-        $positions = Position::all();
-
-
-        return view('document', compact('positions'));
+        
+        return view('home');
     }
+
 }

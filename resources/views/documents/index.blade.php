@@ -33,7 +33,7 @@
             @if($fileName)
                 @if(Str::endsWith($fileName, '.pdf'))
                     <div style="flex: 1;">
-                        <h2 class="text-white">Documento PDF:</h2>
+                        <h2 class="text-white font-bold">Documento PDF:</h2>
                         <iframe width="100%" height="500" 
                             src="{{ asset('storage/documents/' . $fileName) }}" type="application/pdf">
                             <p>Tu navegador no soporta PDFs. <a href="{{ asset('storage/documents/' . $fileName) }}">Descargar el PDF</a>.</p>
@@ -41,7 +41,7 @@
                     </div>
                 @elseif(Str::endsWith($fileName, '.doc') || Str::endsWith($fileName, '.docx'))
                     <div style="flex: 1;">
-                        <h2 class="text-white">Documento Word:</h2>
+                        <h2 class="text-white font-bold">Documento Word:</h2>
                         <iframe 
                             src="https://view.officeapps.live.com/op/view.aspx?src={{ urlencode(asset('storage/documents/' . $fileName)) }}" 
                             width="100%" height="500">
@@ -52,13 +52,13 @@
         
             <!-- Columna para el texto -->
             <div style="flex: 1; padding-left: 20px;">
-                <h4 class="text-white">Detalle de tu CV:</h4>
-                <p class="text-white">{{ $text }}</p>
-                
-                {{-- <button type="button" class="">PROCESAR</button> --}}
-                    
-                {{--  --}}
-                
+                <h4 class="text-white font-bold">Detalle de tu CV:</h4>
+                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-96 hover:scale-105 duration-300 overflow-hidden"
+                    style="height:500px !important;">
+                    <p class="text-white break-words overflow-auto" style="max-height:500px !important;">
+                        {{ $text }}
+                    </p>
+                </div>
             </div>
         </div>
         <br>

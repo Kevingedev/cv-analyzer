@@ -37,7 +37,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 @foreach($matches as $match)
-                    <div class="w-10/12 text-cyan-300 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 min-h-[200px] hover:scale-105 duration-300">
+                    <div class="w-11/12 text-cyan-300 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 min-h-[200px] hover:scale-105 duration-300">
                         <p>
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-cyan-100">{{ $match->name }}</h5>
                         </p>

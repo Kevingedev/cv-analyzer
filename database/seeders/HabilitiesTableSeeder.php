@@ -32,52 +32,52 @@ class HabilitiesTableSeeder extends Seeder
             ],
             [
                 'name' => 'PHP',
-                'description' => '',
+                'description' => 'Manejo del lenguaje php para sitios web de lado del back end',
                 'position_id' => 1,
             ],
             [
                 'name' => 'SQL Server',
-                'description' => '',
+                'description' => 'Control de gestor de base de datos y consultas SQL Server.',
                 'position_id' => 1,
             ],
             [
                 'name' => 'Desarollo Front-End',
-                'description' => '',
+                'description' => 'Experiecia en el desarrollo front end para el desarrollo web.',
                 'position_id' => 1,
             ],
             [
                 'name' => 'Laravel',
-                'description' => '',
+                'description' => 'Control sobre el manejo del framework de php (laravel).',
                 'position_id' => 1,
             ],
             [
                 'name' => 'Python',
-                'description' => '',
+                'description' => 'Manejo del lenguaje Python para disitintos tipos de usos.',
                 'position_id' => 1,
             ],
             [
                 'name' => 'MySQL',
-                'description' => '',
+                'description' => 'Groso conocimiento en Gestor de base de datos MySQL y consultas.',
                 'position_id' => 1,
             ],
             [
                 'name' => 'Desarrollo Back-End',
-                'description' => '',
+                'description' => 'Conocimiento en Desarrollo Back-end para administrar sitios web de lado de servidor.',
                 'position_id' => 1,
             ],
             [
                 'name' => 'C++',
-                'description' => '',
+                'description' => 'Control del lenguaje C++ para desarrollo de aplicaciones.',
                 'position_id' => 1,
             ],
             [
                 'name' => 'HTML',
-                'description' => '',
+                'description' => 'Manejor de la estructura HTML para sitios web.',
                 'position_id' => 1,
             ],
             [
                 'name' => 'JavaScript',
-                'description' => '',
+                'description' => 'Amplio conocimientos en el Lenguaje de JavaScript.',
                 'position_id' => 1,
             ],
             [
@@ -141,8 +141,8 @@ class HabilitiesTableSeeder extends Seeder
                 'position_id' => 3,
             ],
             [
-                'name' => 'control financiero',
-                'description' => '',
+                'name' => 'Catalogo de cuentas',
+                'description' => 'Gran manejo del catalogo de cuentas.',
                 'position_id' => 3,
             ],
         ];
