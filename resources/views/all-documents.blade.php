@@ -35,12 +35,16 @@
             </div>
             <br><br><br>
 
-            <div class="w-100 text-cyan-300 p-6 rounded-lg border-gray-200 rounded-lg shadow dark:border-gray-700 min-h-[200px] ">
+            <div class="w-11/12 text-cyan-300 p-6 rounded-lg border-gray-200 rounded-lg shadow dark:border-gray-700 min-h-[200px] mx-auto">
 
-                <div class="relative overflow-x-auto rounded-lg">
+                <div class="relative overflow-x-auto rounded-lg mx-auto">
+                    @if (count($documents) > 0)
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-400 dark:text-gray-400">
                             <tr>
+                                <th scope="col" class="px-6 py-3 font-bold text-white text-base">
+                                    ID
+                                </th>
                                 <th scope="col" class="px-6 py-3 font-bold text-white text-base">
                                     Nombre Documento
                                 </th>
@@ -62,6 +66,9 @@
                             @foreach ($documents as $document)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th class="px-6 py-4 whitespace-nowrap text-white">
+                                    {{ $document->id }}
+                                </th>
+                                <th class="px-6 py-4 whitespace-nowrap text-white">
                                     {{ $document->name }}
                                 </th>
                                 <td class="px-6 py-4 whitespace-nowrap text-white">
@@ -71,7 +78,7 @@
                                     {{ $document->position->name ?? 'N/A' }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-white">
-                                    @if($document->aprobado == 1)
+                                    @if($document->approved == 1)
                                         <span class="text-green-500 font-semibold">Aprobado</span>
                                     @else
                                         <span class="text-red-500 font-semibold">No Aprobado</span>
@@ -86,6 +93,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                        
+                    @else
+                        <p class="text-center text-xl">No se encontraron resultados</p>
+                    @endif
                 </div>
 
 
@@ -94,7 +105,14 @@
 
             
         </div>
-    
+        @if(session('success'))
+                 
+            <div id="alert-message" 
+                class="fixed top-4 right-4 z-50 p-4 mb-4 text-lg text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 shadow-lg" 
+                role="alert">
+                <span class="font-medium">Increible!</span> {{ session('success') }}
+            </div>
+        @endif
     </body>
 </html>
             

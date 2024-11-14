@@ -16,11 +16,25 @@
         
     </head>
 <body class="font-sans bg-gradient-to-r from-cyan-800 to-gray-800 text-cyan-300"> 
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 dark:bg-gray-800 dark:border-gray-700 p-6">
+        <div class="">
+            <a href="/" class="text-white text-xl font-semibold">CV Analyzer</a>
+        </div>
+        <div class="">
+            <a href="/all-documents" class="text-gray-100 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
+                Documentos</a>
+        </div>
+        <div class="">
+            <a href="/import-cv" class="text-gray-100 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
+                Importar CV</a>
+        </div>
+    </div>
+    <br><br><br>
 
     <div class="md:container md:mx-auto mt-4 pt-4 mb-4">
         <h2 class="text-center mt-4 text-3xl animate__animated animate__backInUp animate__fast mb-4">
             El Currículum {{ $result ? 'coincide' : 'no coincide' }} con un Perfil de <b>{{ $position }}</b>
-            <br><b><span class="text-5xl">"{{ $prediction }}"</span></b>
+            <br><b><span class="text-5xl">Predicción: "{{ $prediction }}"</span></b>
         </h2>
         <br>
         <br>
@@ -28,8 +42,14 @@
         {{-- <p>Predicción: {{ $prediction }}</p> --}}
             @if(count($matches) > 0 && $result)
             <div class="">
+                <form action="{{ route('documents.approve', $id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="drop-shadow-lg transition-all ease-in duration-75 text-white bg-cyan-700 hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-900">
+                        Aprobar
+                    </button>
+                </form>
                 <h5 class="mb-2 text-gray-200">El Curriculum de esta persona coincide con ({{ count($matches) }}) 
-                    habilidades encontradas obteniendo un porcentaje de aprovacion de <b>{{ number_format($approvalPercentage, 2) }}%
+                    habilidades encontradas obteniendo un porcentaje de aprobación estimado de <b>{{ number_format($approvalPercentage, 2) }}%
                     ({{ $approvalPercentage > 50 ? 'Aprobado' : 'Reprobado' }})</b>
                 </h5>
             </div>

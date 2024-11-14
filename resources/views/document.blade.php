@@ -16,7 +16,20 @@
         
     </head>
     <body class="font-sans antialiased bg-gradient-to-r from-cyan-800 to-gray-800 dark:text-white/50 overflow-hidden">
-    
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 dark:bg-gray-800 dark:border-gray-700 p-6">
+            <div class="">
+                <a href="/" class="text-white text-xl font-semibold">CV Analyzer</a>
+            </div>
+            <div class="">
+                {{-- <a href="/import-cv" class="text-gray-100 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
+                    Importar CV</a> --}}
+            </div>
+            <div class="">
+                <a href="/all-documents" class="text-gray-100 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
+                    Documentos</a>
+            </div>
+        </div>
+    <br><br><br>
         <div class="md:container md:mx-auto">
 
             <div class="grid grid-cols-1 place-content-center content-center h-100 justify-center">

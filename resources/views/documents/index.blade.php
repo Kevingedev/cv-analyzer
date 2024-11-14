@@ -27,7 +27,7 @@
         type="button" 
         class="focus:outline-none text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 cursor-pointer"
         >
-            Validar Postulante
+            Analizar Postulante
         </a>
         <div style="display: flex; justify-content: flex-start; align-items: flex-start; gap: 20px;" class="mt-4">
             @if($fileName)

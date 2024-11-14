@@ -38,15 +38,25 @@
 
             <div class="grid grid-cols-1 place-content-center content-center h-100 justify-center">
                 <div>
-                    <p class="animate__animated animate__backInUp animate__faster font-sans text-4xl text-center pt-8 mt-8 font-bold text-cyan-300">
-                        <span class="text-4xl sm:text-5xl md:text-4xl lg:text-7xl xl:text-8xl">Valida </span> el Curriculum según el
+                    <p class="animate__animated animate__backInUp animate__faster font-sans text-4xl text-center pt-8 mt-8 font-bold text-white">
+                        <span class="text-4xl sm:text-5xl md:text-4xl lg:text-7xl xl:text-8xl text-cyan-300">Valida </span> el Curriculum según el
                     </p>
-                    <p class="animate__animated animate__backInUp animate__fast font-sans text-4xl text-center pt-4 font-bold text-cyan-300">
-                        Puesto que <span class="text-4xl sm:text-5xl md:text-4xl lg:text-7xl xl:text-8xl">tu</span> escojas.
+                    <p class="animate__animated animate__backInUp animate__fast font-sans text-4xl text-center pt-4 font-bold text-white">
+                        Puesto que <span class="text-4xl sm:text-5xl md:text-4xl lg:text-7xl xl:text-8xl text-cyan-300">tu</span> escojas.
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 place-content-center content-center h-100 justify-center">
+                <div class="w-10/12 text-center mx-auto">
+                    <br><br><br>
+                    <p class="animate__animated animate__backInUp font-sans text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl text-center pt-8  text-white">
+                        <i>"A través de un análisis inteligente del curriculum utilizando redes neuronales nuestro sistema predice las áreas o los puestos con los que el postulante califica. 
+                            Puedes validar el curriculum con los puestos de trabaajos disponibles y validar si el postulante cumple con las habilidades requeridas."</i>
                     </p>
                 </div>
             </div>
         </div>
+        
     
     </body>
 </html>

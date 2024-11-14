@@ -19,6 +19,19 @@ class ValidarPostulanteController extends Controller
         return view('validar_postulante');
     }
 
+    public function approve($id)
+    {
+        $document = Document::findOrFail($id);
+
+        //dd($document);
+        $document->approved = '1';
+        $document->save();
+
+        // Redirige a la vista home
+        //all-documents
+        return redirect()->route('documents')->with('success', 'Documento Aprobado con éxito');
+    }
+
     public function getPredictionFromPython($id){
         $document = Document::find($id);
         $text = $this->limpiarTexto($document->content);

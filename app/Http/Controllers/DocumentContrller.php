@@ -47,7 +47,7 @@ class DocumentContrller extends Controller
                     // $position_id = $request->input('position_id');
                     // dd($position_id);
                     $path = storage_path('app/public/documents/' . $pdfFileName);
-                    $text = (new Pdf('D:\poppler-24.07.0\Library\bin\pdftotext.exe')) //Obteniendo el texto de documento
+                    $text = (new Pdf(storage_path('../poppler-24.07.0\Library\bin\pdftotext.exe'))) //Obteniendo el texto de documento
                     ->setPdf($path)
                     ->text();
 
