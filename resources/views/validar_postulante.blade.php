@@ -88,6 +88,11 @@
                         </h5>
                         <p class="text-center">
                             <h5 class="mb-2 text-xl font-bold tracking-tight text-cyan-100 text-center">Ninguna habilidad encontrada para este perfil <b>({{ $position }})</b>.</h5>
+                            <br><br>
+                            <a href="{{ route('documents.delete', ['id' => $id]) }}" title="Eliminar Curriculum"
+                                class="drop-shadow-lg mt-4 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                               Eliminar
+                            </a>
                         </p>
                         
                     </div>

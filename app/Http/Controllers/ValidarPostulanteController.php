@@ -24,9 +24,9 @@ class ValidarPostulanteController extends Controller
         $document = Document::find($id);
         if ($document) {
             $document->delete();
-            return redirect()->back()->with('success', 'Documento eliminado con éxito');
+            return redirect()->route('documents')->with('success', 'Documento eliminado con éxito');
         } else {
-            return redirect()->back()->with('error', 'Documento no encontrado');
+            return redirect()->route('documents')->with('error', 'Documento no encontrado');
         }
     }
 
