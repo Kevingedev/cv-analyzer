@@ -82,6 +82,10 @@
             @else
             <div class="text-center">
                     <div class="w-100 text-cyan-300 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 min-h-[200px] hover:scale-105 duration-300">
+                        <h5 class="mb-2 text-gray-200">El Curriculum de esta persona coincide con ({{ count($matches) }}) 
+                            habilidades encontradas obteniendo un porcentaje de aprobación estimado de <b>{{ number_format($approvalPercentage, 2) }}%
+                            ({{ $approvalPercentage > 50 ? 'Aprobado' : 'Reprobado' }})</b>
+                        </h5>
                         <p class="text-center">
                             <h5 class="mb-2 text-xl font-bold tracking-tight text-cyan-100 text-center">Ninguna habilidad encontrada para este perfil.</h5>
                         </p>

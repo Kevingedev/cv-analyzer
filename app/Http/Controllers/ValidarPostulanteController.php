@@ -155,7 +155,11 @@ class ValidarPostulanteController extends Controller
 
     function approval_percentage($totalMatches, $totalHabilities){
 
-        $approvalPercentage =  (($totalMatches / $totalHabilities)*100);
+        if ($totalMatches > 0 && $totalHabilities > 0) {
+            $approvalPercentage =  (($totalMatches / $totalHabilities)*100);
+        }else{
+            $approvalPercentage = 0;
+        }
 
         return $approvalPercentage;
 
