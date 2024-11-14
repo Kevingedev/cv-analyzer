@@ -87,7 +87,6 @@ for item in data:
 
 
 # Crear un diccionario con los resultados
-
 def get_prediction_and_matches(new_text):
     cleaned_text = remove_stopwords(new_text, custom_stopwords)
     # Realizar la predicción
@@ -103,8 +102,7 @@ def get_prediction_and_matches(new_text):
     return json.dumps(result, ensure_ascii=False)
 
 # Prueba con un nuevo texto
-#new_text = "CARLOS JOSE PEREZ RUIZ EXPERIENCIA DESARROLLADOR WEB FULL STACK Soluciones Digitales S.A. de C.V. San Salvador, El Salvador Agosto 2019 Actualidad CARLOSJOSE.RUIZ@GMAIL.COM 77587985 Desarrollé y mantuve aplicaciones web dinámicas utilizando Laravel para el backend y React en el frontend, asegurando alta eficiencia y escalabilidad en los proyectos. Implementé diseños responsivos para mejorar la experiencia en dispositivos móviles, lo que incrementó la retención de usuarios en un 20. Integré APIs de terceros, como servicios de pago y plataformas de redes sociales, para expandir las capacidades de la plataforma. Colaboré en la implementación de prácticas de seguridad para proteger datos sensibles y prevenir vulnerabilidades de seguridad. DESARROLLADOR FRONTEND Agencia Creativa Web S.A. San Salvador, El Salvador Marzo 2016 Julio 2019 IDIOMAS Español: Nativo Inglés: Intermedio (lectura y escritura técnica) APTITUDES Desarrollador Web Full Stack con más de 5 años de experiencia en el diseño y desarrollo de aplicaciones web innovadoras y centradas en el usuario. Diseñé e implementé interfaces de usuario atractivas y funcionales utilizando HTML, CSS, y JavaScript, asegurando una experiencia de usuario coherente y optimizada. Trabajé con el equipo de diseño para traducir maquetas en experiencias digitales efectivas, cumpliendo con los estándares de accesibilidad y compatibilidad en distintos navegadores. Utilicé Vue.js y JavaScript ES6 para desarrollar componentes reutilizables, mejorando la eficiencia y consistencia del código. Realicé pruebas de usabilidad y optimización de rendimiento, logrando reducir los tiempos de carga en un 30.Asistente Contable ASISTENTE DE DESARROLLO WEB Desarrollos Tecnológicos S.A. San Salvador, El Salvador Mayo 2014 Febrero 2016 Apoyé en el desarrollo y mantenimiento de sitios web en WordPress, realizando personalizaciones y ajustes según los requerimientos del cliente. Colaboré en la creación de plantillas de HTML y CSS, mejorando la velocidad de desarrollo y facilitando la consistencia en los diseños. Realicé pruebas de compatibilidad en navegadores y dispositivos para garantizar una experiencia de usuario fluida. Apoyo con pruebas unitarias para sitios web administrativos. FORMACIÓN ACADÉMICA Licenciatura en Ingeniería en Sistemas Informáticos Universidad de El Salvador Graduación: Diciembre 2013 Certificación en Desarrollo Web Full Stack Academia de Innovación Digital El Salvador 2018 HABILIDADES TÉCNICAS Frontend: HTML5, CSS3, JavaScript (ES6), React, Vue.js, Bootstrap. Backend: PHP, Laravel, Node.js. Bases de Datos: MySQL, MongoDB. Herramientas y Versionamiento: Git, GitHub, Bitbucket. Otras Tecnologías: APIs RESTful, JSON, AJAX. Idiomas: Español (nativo), Inglés (intermedioavanzado). 2" 
-
+#new_text = ""
 # Asegurarse de que se pase un argumento
 if len(sys.argv) < 2:
     print("Error: Se espera un argumento de texto.")
@@ -113,9 +111,6 @@ if len(sys.argv) < 2:
 # Obtener el texto pasado como argumento
 new_text = sys.argv[1]
 
-# Imprimir predicción y coincidencias encontradas
-# print(f"Predicción de carrera para el texto ingresado: {prediction}")
-# print(f"Coincidencias encontradas: {', '.join(matches) if matches else 'Ninguna'}")
 response = get_prediction_and_matches(new_text)
 print(response)
 
