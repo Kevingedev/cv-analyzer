@@ -34,7 +34,7 @@
     <div class="md:container md:mx-auto mt-4 pt-4 mb-4">
         <h2 class="text-center mt-4 text-3xl animate__animated animate__backInUp animate__fast mb-4">
             El Currículum {{ $result ? 'coincide' : 'no coincide' }} con un Perfil de <b>{{ $position }}</b>
-            <br><b><span class="text-5xl">Predicción: "{{ $prediction }}"</span></b>
+            <br><span class="text-4xl font-medium">Predicción de CV Analizer: <b>"{{ $prediction }}"</b></span>
         </h2>
         <br>
         <br>
@@ -44,11 +44,11 @@
             <div class="">
                 <form action="{{ route('documents.approve', $id) }}" method="POST">
                     @csrf
-                    <button type="submit" class="drop-shadow-lg transition-all ease-in duration-75 text-white bg-cyan-700 hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-900">
+                    <button type="submit" class="drop-shadow-lg transition-all ease-in duration-75 text-white bg-cyan-700 hover:bg-cyan-900 focus:outline-none focus:ring-4 focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-900">
                         Aprobar
                     </button>
                 </form>
-                <h5 class="mb-2 text-gray-200">El Curriculum de esta persona coincide con ({{ count($matches) }}) 
+                <h5 class="mb-2 text-gray-100">El Curriculum de esta persona coincide con ({{ count($matches) }}) 
                     habilidades encontradas obteniendo un porcentaje de aprobación estimado de <b>{{ number_format($approvalPercentage, 2) }}%
                     ({{ $approvalPercentage > 50 ? 'Aprobado' : 'Reprobado' }})</b>
                 </h5>
@@ -87,7 +87,7 @@
                             ({{ $approvalPercentage > 50 ? 'Aprobado' : 'Reprobado' }})</b>
                         </h5>
                         <p class="text-center">
-                            <h5 class="mb-2 text-xl font-bold tracking-tight text-cyan-100 text-center">Ninguna habilidad encontrada para este perfil.</h5>
+                            <h5 class="mb-2 text-xl font-bold tracking-tight text-cyan-100 text-center">Ninguna habilidad encontrada para este perfil <b>({{ $position }})</b>.</h5>
                         </p>
                         
                     </div>

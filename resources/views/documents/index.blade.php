@@ -16,11 +16,24 @@
         
     </head>
 <body class="font-sans antialiased bg-gradient-to-r from-cyan-800 to-gray-800 dark:text-white/50"> 
-    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 dark:bg-gray-800 dark:border-gray-700 p-6">
+        <div class="">
+            <a href="/" class="text-white text-xl font-semibold">CV Analyzer</a>
+        </div>
+        <div class="">
+            <a href="/all-documents" class="text-gray-100 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
+                Documentos</a>
+        </div>
+        <div class="">
+            <a href="{{ route('import.cv') }}" class="text-gray-100 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
+                Importar CV</a>
+        </div>
+    </div>
     <div class="md:container md:mx-auto">
         <p class="animate__animated animate__backInUp animate__fast font-sans text-2xl sm:text-lg md:text-2xl lg:text-2xl xl:text-4xl text-center pt-4 font-bold text-cyan-300 ">
             {{ $fileName }}
         </p>
+        <br><br>
         {{-- <p>El nombre del archivo es: {{ $fileName }}</p> --}}
         <a 
         href="{{ route('validar.postulante', ['id' => $id]) }}"
@@ -29,6 +42,7 @@
         >
             Analizar Postulante
         </a>
+        <br><br>
         <div style="display: flex; justify-content: flex-start; align-items: flex-start; gap: 20px;" class="mt-4">
             @if($fileName)
                 @if(Str::endsWith($fileName, '.pdf'))
@@ -53,7 +67,7 @@
             <!-- Columna para el texto -->
             <div style="flex: 1; padding-left: 20px;">
                 <h4 class="text-white font-bold">Detalle de tu CV:</h4>
-                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-96 hover:scale-105 duration-300 overflow-hidden"
+                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-96  overflow-hidden"
                     style="height:500px !important;">
                     <p class="text-white break-words overflow-auto" style="max-height:500px !important;">
                         {{ $text }}

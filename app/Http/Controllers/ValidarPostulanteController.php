@@ -19,6 +19,17 @@ class ValidarPostulanteController extends Controller
         return view('validar_postulante');
     }
 
+    public function delete($id){
+        
+        $document = Document::find($id);
+        if ($document) {
+            $document->delete();
+            return redirect()->back()->with('success', 'Documento eliminado con éxito');
+        } else {
+            return redirect()->back()->with('error', 'Documento no encontrado');
+        }
+    }
+
     public function approve($id)
     {
         $document = Document::findOrFail($id);

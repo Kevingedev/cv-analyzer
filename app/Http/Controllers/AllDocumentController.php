@@ -15,4 +15,12 @@ class AllDocumentController extends Controller
 
         return view('all-documents', compact('documents'));
     }
+
+    public function view($id)
+    {
+        
+        $document = Document::find($id);
+
+        return view('view_document', compact('document'));
+    }
 }

@@ -20,5 +20,9 @@ Route::get('/validate-applicant/{id}', [ValidarPostulanteController::class, 'get
 
 Route::post('/validate-applicant/approve/{id}', [ValidarPostulanteController::class, 'approve'])->name('documents.approve');
 
+Route::get('/validate-applicant/delete/{id}', [ValidarPostulanteController::class, 'delete'])->name('documents.delete');
+
 Route::get('/all-documents', [AllDocumentController::class, 'index'])->name('documents');
+
+Route::get('/document/{id}', [AllDocumentController::class, 'view'])->name('view.document');
 

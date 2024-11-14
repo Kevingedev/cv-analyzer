@@ -71,8 +71,8 @@
                                 <th class="px-6 py-4 whitespace-nowrap text-white">
                                     {{ $document->name }}
                                 </th>
-                                <td class="px-6 py-4 whitespace-nowrap text-white">
-                                    {{ Str::limit($document->content, 50) }}
+                                <td class="px-6 py-4 whitespace-nowrap text-white" title="{{ $document->content }}">
+                                    {{ Str::limit($document->content, 20) }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-white">
                                     {{ $document->position->name ?? 'N/A' }}
@@ -86,8 +86,17 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-white">
                                     {{-- <a class="btn btn-icon btn-primary"></a> --}}
-                                    <a href="{{ route('validar.postulante', ['id' => $document->id]) }}"
-                                         class="text-white bg-cyan-700 hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-900">validar cv</a>
+                                    @if ($document->approved == 1)
+                                            <a href="{{ route('view.document', ['id' => $document->id]) }}" title="Ver Curriculum"
+                                                class="drop-shadow-lg text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-900">Ver</a>                                        
+                                    @else
+                                        <a href="{{ route('validar.postulante', ['id' => $document->id]) }}" title="Validar Curriculum"
+                                            class="drop-shadow-lg text-white bg-cyan-700 hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-900">validar</a>
+                                    @endif
+                                    <a href="{{ route('documents.delete', ['id' => $document->id]) }}" title="Eliminar Curriculum"
+                                        class="drop-shadow-lg text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                       Eliminar
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
