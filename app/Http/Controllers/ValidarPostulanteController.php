@@ -51,11 +51,13 @@ class ValidarPostulanteController extends Controller
 
         // Ruta a script de python
         $pythonScriptPath = storage_path('../python_scripts/validar_curriculum.py');
-        $pythonExecutable = 'python';
+        // Usa la variable de entorno PYTHON_PATH si está definida, si no usa 'python3' por defecto
+        $pythonExecutable = env('PYTHON_PATH', 'python3');
 
         // Crear el comando que ejecutara el script de python
-
-        $process = new Process([$pythonExecutable, $pythonScriptPath, $text]);
+        // Ejecutar el proceso con working directory en `python_scripts` para que
+        // rutas relativas dentro del script (p. ej. escritura de pkl) funcionen.
+        $process = new Process([$pythonExecutable, $pythonScriptPath, $text], base_path('python_scripts'));
         $process->run();
 
         // Verificar si el script se ejecutó correctamente

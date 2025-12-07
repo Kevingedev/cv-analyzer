@@ -47,9 +47,9 @@ class DocumentContrller extends Controller
                     // $position_id = $request->input('position_id');
                     // dd($position_id);
                     $path = storage_path('app/public/documents/' . $pdfFileName);
-                    $text = (new Pdf('D:\poppler-24.07.0\Library\bin\pdftotext.exe')) //Obteniendo el texto de documento
-                    ->setPdf($path)
-                    ->text();
+                    $popplerPath = env('POPPLER_PATH', null);
+                    $pdf = $popplerPath ? new Pdf($popplerPath) : new Pdf(); //Obteniendo el texto de documento (usa POPPLER_PATH o binario en PATH)
+                    $text = $pdf->setPdf($path)->text();
 
                     $new_document = Document::create([
                         'position_id' => $position_id,
@@ -66,9 +66,9 @@ class DocumentContrller extends Controller
 
             $file_name = $fileName . '.' . $extension;
             $path = storage_path('app/public/documents/'.$file_name); //guardando lel documento y obteniendo la ruta
-            $text = (new Pdf('D:\poppler-24.07.0\Library\bin\pdftotext.exe')) //Obteniendo el texto de documento
-            ->setPdf($path)
-            ->text();
+            $popplerPath = env('POPPLER_PATH', null);
+            $pdf = $popplerPath ? new Pdf($popplerPath) : new Pdf();
+            $text = $pdf->setPdf($path)->text();
             $new_document = Document::create([
                 'position_id' => $position_id, //posicion de trabajo
                 'name' => $file_name, // ruta del documento guardado 
