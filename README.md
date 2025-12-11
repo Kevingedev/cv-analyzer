@@ -53,16 +53,25 @@ Aplicación web Laravel para analizar currículums, extraer texto, clasificarlos
 	php artisan key:generate
 	```
 
-5. **Crea la base de datos SQLite:**
-	```bash
-	touch database/database.sqlite
-	```
-	(O configura MySQL en `.env` si prefieres)
+5. **Configura la base de datos MySQL/PostgreSQL:**
+	- En Railway, crea una base de datos desde el panel y copia las credenciales.
+	- En `.env` (o en el panel de Railway) configura:
+	  ```env
+	  DB_CONNECTION=mysql # o pgsql
+	  DB_HOST=...        # host proporcionado por Railway
+	  DB_PORT=3306       # o 5432 para Postgres
+	  DB_DATABASE=...    # nombre de la base de datos
+	  DB_USERNAME=...    # usuario
+	  DB_PASSWORD=...    # contraseña
+	  ```
+	- No uses SQLite en producción.
 
-6. **Crea el enlace público y ejecuta migraciones + seeders:**
+6. **Crea el enlace público y ejecuta migraciones:**
 	```bash
 	php artisan storage:link
-	php artisan migrate --seed
+	php artisan migrate --force
+	# Si quieres poblar datos:
+	php artisan db:seed --force
 	```
 
 7. **Compila assets front-end:**
