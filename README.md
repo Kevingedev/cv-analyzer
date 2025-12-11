@@ -13,6 +13,22 @@ Aplicación web Laravel para analizar currículums, extraer texto, clasificarlos
 
 ## Instalación paso a paso (Linux)
 
+## Despliegue en Railway
+
+1. Sube el repositorio a GitHub.
+2. Ve a [railway.app](https://railway.app) y crea un nuevo proyecto desde tu repo.
+3. Añade las variables de entorno necesarias en el panel de Railway:
+	- APP_KEY (genera con `php artisan key:generate`)
+	- APP_ENV=production
+	- DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD (según la base de datos que elijas)
+	- PYTHON_PATH=/usr/bin/python3
+	- POPPLER_PATH=/usr/bin/pdftotext
+4. Railway detecta Laravel automáticamente y ejecuta migraciones.
+5. Configura la base de datos desde Railway y actualiza las variables en el panel.
+6. Añade el comando post-deploy: `php artisan migrate --force`
+7. El almacenamiento y los archivos públicos funcionan por defecto.
+8. Si usas Python, asegúrate de tener `python_scripts/requirements.txt` en el repo.
+
 1. **Clona el repositorio:**
 	```bash
 	git clone <repo_url>
