@@ -29,6 +29,13 @@ RUN npm run build
 # Cambia '8.2' por la versión de PHP que realmente usa tu proyecto
 FROM php:8.2-fpm-bullseye as final_production
 
+# INSTALACIÓN EXPLÍCITA DE COMPOSER (¡NUEVO BLOQUE DE CÓDIGO!)
+# Esto asegura que el comando 'composer' esté disponible en esta imagen.
+RUN apt-get update && apt-get install -y wget
+RUN wget https://getcomposer.org/installer -O composer-setup.php \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
+
 # 1. INSTALACIÓN DE DEPENDENCIAS DEL SISTEMA (SOLUCIÓN PDFTOTEXT)
 RUN apt-get update && \
     apt-get install -y \
@@ -38,7 +45,9 @@ RUN apt-get update && \
     libonig-dev \
     libpng-dev \
     libjpeg-dev \
+    # ESTO ES LO CRUCIAL PARA PDFTOTEXT
     poppler-utils \
+    # Instalar librerías para extensiones de PHP
     libpq-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
