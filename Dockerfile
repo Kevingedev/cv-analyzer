@@ -3,21 +3,18 @@
 # ----------------------------------------------------
 FROM node:18 as node_builder
 
-# Instalar Git para que Composer pueda descargar dependencias
+# Instalar Git para que las descargas de Composer funcionen si fueran necesarias, aunque Composer se moverá a la etapa 2
 RUN apt-get update && apt-get install -y git
 
 # Establecer el directorio de trabajo para esta etapa
 WORKDIR /app
 
-# Copiar archivos de Node y Composer para aprovechar la caché
+# Copiar archivos de Node
 COPY package.json package-lock.json ./
-COPY composer.json composer.lock ./
+# El composer.json se copia para la etapa 2
 
 # Instalar dependencias de Node
 RUN npm install
-
-# Instalar dependencias de PHP y descargar vendors (solo si Composer necesita Git)
-RUN composer install --no-dev --ignore-platform-reqs
 
 # Copiar el código fuente completo
 COPY . .
@@ -33,7 +30,6 @@ RUN npm run build
 FROM php:8.2-fpm-bullseye as final_production
 
 # 1. INSTALACIÓN DE DEPENDENCIAS DEL SISTEMA (SOLUCIÓN PDFTOTEXT)
-# Instala poppler-utils y otras extensiones de PHP necesarias
 RUN apt-get update && \
     apt-get install -y \
     git \
@@ -42,13 +38,10 @@ RUN apt-get update && \
     libonig-dev \
     libpng-dev \
     libjpeg-dev \
-    # ESTO ES LO CRUCIAL PARA PDFTOTEXT
     poppler-utils \
-    # Instalar librerías para extensiones de PHP
     libpq-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
-    # Limpieza de cache al final
     && rm -rf /var/lib/apt/lists/*
 
 # 2. INSTALACIÓN DE EXTENSIONES DE PHP
@@ -59,23 +52,23 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # 3. DIRECTORIO DE TRABAJO
 WORKDIR /var/www/html
 
-# 4. COPIAR ARCHIVOS DESDE LAS ETAPAS ANTERIORES
-# Copiar el código y los assets compilados desde la etapa 'node_builder'
+# 4. COPIAR ARCHIVOS DE CÓDIGO Y COMPOSER
+# Copiar archivos de Composer (necesarios para el siguiente paso)
+COPY composer.json composer.lock ./
+# Copiar el resto del código y el frontend compilado
 COPY --from=node_builder /app/public public
-COPY --from=node_builder /app/vendor vendor
 COPY --from=node_builder /app .
-COPY --from=node_builder /app/.env.example ./.env.example # Solo si lo usas
 
-# 5. OPTIMIZACIONES DE LARAVEL (PARA PRODUCCIÓN)
-# Creamos archivos de configuración y rutas en caché.
+# 5. INSTALACIÓN DE DEPENDENCIAS DE PHP (NUEVA UBICACIÓN)
+RUN composer install --no-dev --optimize-autoloader
+
+# 6. OPTIMIZACIONES DE LARAVEL (PARA PRODUCCIÓN)
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
 
-# 6. CONFIGURACIÓN DE PERMISOS (CRUCIAL PARA LARAVEL)
-# Asignar el usuario 'www-data' (bajo el que corre PHP-FPM) como dueño.
+# 7. CONFIGURACIÓN DE PERMISOS (CRUCIAL PARA LARAVEL)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 7. COMANDO DE INICIO
-# Inicia PHP-FPM en primer plano
+# 8. COMANDO DE INICIO
 CMD ["php-fpm"]
