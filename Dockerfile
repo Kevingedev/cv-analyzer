@@ -79,10 +79,18 @@ RUN composer install --no-dev --optimize-autoloader
 # 7. CONFIGURACIÓN DE PERMISOS (CRUCIAL PARA LARAVEL)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 8. LIMPIEZA FINAL (NUEVO)
-# Asegurarse de que no queden archivos de caché de configuración obsoletos
-RUN php artisan config:clear
-RUN php artisan cache:clear
+# 8. LIMPIEZA FINAL
+# Forzamos la conexión de DB y el CACHE_DRIVER a 'file' para evitar 
+# el fallo de SQLite durante el build.
+
+# Limpiamos la configuración (DB_CONNECTION=mysql para evitar el fallo anterior)
+RUN DB_CONNECTION=mysql php artisan config:clear
+
+# Limpiamos la caché de la aplicación forzando el driver a 'file'
+RUN CACHE_DRIVER=file php artisan cache:clear
+
+# Limpiamos la caché de vistas
+RUN php artisan view:clear
 
 # 9. COMANDO DE INICIO
 CMD ["php-fpm"]
