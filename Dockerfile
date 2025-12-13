@@ -72,12 +72,17 @@ COPY --from=node_builder /app .
 RUN composer install --no-dev --optimize-autoloader
 
 # 6. OPTIMIZACIONES DE LARAVEL (PARA PRODUCCIÓN)
-RUN DB_CONNECTION=mysql php artisan config:cache
-RUN DB_CONNECTION=mysql php artisan route:cache
-RUN DB_CONNECTION=mysql php artisan view:cache
+# RUN DB_CONNECTION=mysql php artisan config:cache
+# RUN DB_CONNECTION=mysql php artisan route:cache
+# RUN DB_CONNECTION=mysql php artisan view:cache
 
 # 7. CONFIGURACIÓN DE PERMISOS (CRUCIAL PARA LARAVEL)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 8. COMANDO DE INICIO
+# 8. LIMPIEZA FINAL (NUEVO)
+# Asegurarse de que no queden archivos de caché de configuración obsoletos
+RUN php artisan config:clear
+RUN php artisan cache:clear
+
+# 9. COMANDO DE INICIO
 CMD ["php-fpm"]
